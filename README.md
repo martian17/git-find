@@ -7,22 +7,23 @@ Specifying no remote and no name will list all repositories by default.
 </p>
 
 ## Command options
-```md
-usage: index.mjs [-h] [--path PATH] [--remote REMOTE] [--name NAME] [--eacces] [--eignore] [--nosub] [--subonly] [-r] [path]
+```markdown
+usage: index.mjs [-h] [--path PATH] [--name NAME] [--remote REMOTE] [--eacces] [--eignore] [--nosub] [--subonly] [-r] [path]
 
 positional arguments:
   path             path
 
 optional arguments:
   -h, --help       show this help message and exit
-  --path PATH      path to the target directory
-  --remote REMOTE  specify remote url to match
+  (--path) PATH    path to the target directory
   --name NAME      specify repository name to match
+  --remote REMOTE  specify remote url to match
   --eacces         show file access error
   --eignore        ignore all errors
   --nosub          ignore submodules
   --subonly        list only submodules
   -r, --recursive  recursive search
+
 ```
 
 ## Install
