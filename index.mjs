@@ -12,7 +12,7 @@ parser.add_argument("--eacces",{action:"store_true",help:"show file access error
 parser.add_argument("--eignore",{action:"store_true",help:"ignore all errors"});
 parser.add_argument("--nosub",{action:"store_true",help:"ignore submodules"});
 parser.add_argument("--subonly",{action:"store_true",help:"list only submodules"});
-parser.add_argument("--recursive",{action:"store_true",help:"recursive search"});
+parser.add_argument("-r","--recursive",{action:"store_true",help:"recursive search"});
 const args = parser.parse_args();
 //console.log(args);
 const path = resolve(args.path || ".");
