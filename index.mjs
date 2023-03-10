@@ -10,6 +10,8 @@ parser.add_argument("--remote",{help:"specify remote"});
 parser.add_argument("--name",{help:"specify repository name"});
 parser.add_argument("--eacces",{action:"store_true",help:"show file access error"});
 parser.add_argument("--eignore",{action:"store_true",help:"ignore all errors"});
+parser.add_argument("--nosub",{action:"store_true",help:"ignore submodules"});
+parser.add_argument("--subonly",{action:"store_true",help:"list only submodules"});
 parser.add_argument("--recursive",{action:"store_true",help:"recursive search"});
 const args = parser.parse_args();
 //console.log(args);
@@ -57,8 +59,10 @@ const checkGit = async function(basePath,path,args,isSubmodule){
 const checkGitFile = async function(dirent,path,args){
     const gitpath = Path.join(path,".git");
     if(dirent.isDirectory()){
+        if(args.subonly)return;
         await checkGit(path,gitpath,args,false);
     }else{
+        if(args.nosub)return;
         const content = (""+await fs.readFile(gitpath)).trim();
         if(!content.startsWith("gitdir: "))return;
         await checkGit(path,Path.join(path,content.slice(8)),args,true);
