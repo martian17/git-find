@@ -59,7 +59,7 @@ pnpm install
 ```
 
 ## Todo
-Option to list repositories with uncommited changes or detached head.
+Option to list repositories with uncommited changes or detached head.  
 Improve install process
 
 
