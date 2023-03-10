@@ -1,0 +1,4 @@
+#!/bin/bash
+
+dirname=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+node $dirname"/git-find-dir/index.mjs" "$@"
