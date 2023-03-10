@@ -1,6 +1,11 @@
 # git-find
 Find git repositories in your local file system by the repository name or remote URL.  
 Specifying no remote and no name will list all repositories by default.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/19868746/224391462-ad805d10-cfe7-4fb6-ada4-8799710d9871.png" alt="git-find-wildcard"/>
+</p>
+
 ## Command options
 ```md
 usage: index.mjs [-h] [--path PATH] [--remote REMOTE] [--name NAME] [--eacces] [--eignore] [--nosub] [--subonly] [-r] [path]
