@@ -32,6 +32,18 @@ optional arguments:
 ```
 `repo-name` will be colored yellow if it is a normal repository, and cyan if it's a submodule
 
+## Examples
+### Example 1: Finding duplicates
+<img src="https://user-images.githubusercontent.com/19868746/224398067-51852b05-ff46-42bf-a2e9-d90e147f8225.png" alt="git-find-duplicate"/>
+### Example 2: Finding recursively
+<img src="https://user-images.githubusercontent.com/19868746/224397456-b56604f5-be94-4a83-93b5-7fe5696e72a5.png" alt="git-find-duplicate"/>
+### Example 3: Filter with submodule only
+<img src="https://user-images.githubusercontent.com/19868746/224397493-07a6d3e2-9d80-4581-b53c-b288facb2e7e.png" alt="git-find-duplicate"/>
+### Example 4: Wildcard with no submodule filter recursive
+<img src="https://user-images.githubusercontent.com/19868746/224399868-5c2ad0d5-cbd4-4300-9f7e-991a763add8e.png" alt="git-find-duplicate"/>
+### Example 5: Count repository instances
+<img src="https://user-images.githubusercontent.com/19868746/224400289-0a2b4847-a197-4a8a-89b2-d28e504c3899.png" alt="git-find-duplicate"/>
+
 ## Install
 ```
 cd <your_bin_dir>
