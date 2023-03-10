@@ -26,6 +26,12 @@ optional arguments:
 
 ```
 
+## Output Format
+```
+<repo-name> <remote-name> <path> : <remote-url>
+```
+`repo-name` will be colored yellow if it is a normal repository, and cyan if it's a submodule
+
 ## Install
 ```
 cd <your_bin_dir>
@@ -38,7 +44,7 @@ pnpm install
 
 ## Todo
 Option to list repositories with uncommited changes or detached head.
-
+Improve install process
 
 
 
