@@ -5,21 +5,23 @@ import Path from "path";
 
 const parser = new ArgumentParser;
 parser.add_argument("path", {nargs:"?",help:"path"});
-parser.add_argument("--path", {help:"path"});
+parser.add_argument("--path", {help:"path to the target directory"});
 parser.add_argument("--remote",{help:"specify remote"});
-parser.add_argument("--name",{help:"specify name"});
+parser.add_argument("--name",{help:"specify repository name"});
+parser.add_argument("--eacces",{action:"store_true",help:"show file access error"});
+parser.add_argument("--eignore",{action:"store_true",help:"ignore all errors"});
 parser.add_argument("--recursive",{action:"store_true",help:"recursive search"});
 const args = parser.parse_args();
-console.log(args);
+//console.log(args);
 const path = resolve(args.path || ".");
-console.log(path);
+//console.log(path);
 
 if(!args.name && !args.remote){
     console.log("please specify either name or remote");
     process.exit();
 }
 
-const checkGit = async function(basePath,path,args){
+const checkGit = async function(basePath,path,args,isSubmodule){
     const {name:_name,remote:_remote} = args;
     const configPath = Path.join(path,"config");
     const content = "" + await fs.readFile(configPath);
@@ -44,7 +46,13 @@ const checkGit = async function(basePath,path,args){
                 if(_remote)
                     isMatch &&= _remote === url;
                 if(isMatch){
-                    console.log(`\u001b[33;1m${name}\u001b[0m \u001b[32m${remote}\u001b[0m \u001b[35;1m${basePath}\u001b[0m : \u001b[33m${url}\u001b[0m`);
+                    let out = "";
+                    if(isSubmodule){
+                        out += `\u001b[36;1m${name}\u001b[0m`;
+                    }else{
+                        out += `\u001b[33;1m${name}\u001b[0m`;
+                    }
+                    console.log(`${out} \u001b[32m${remote}\u001b[0m \u001b[35;1m${basePath}\u001b[0m : \u001b[33m${url}\u001b[0m`);
                 }
             }
         }
@@ -54,18 +62,20 @@ const checkGit = async function(basePath,path,args){
 const checkGitFile = async function(dirent,path,args){
     const gitpath = Path.join(path,".git");
     if(dirent.isDirectory()){
-        await checkGit(path,gitpath,args);
+        await checkGit(path,gitpath,args,false);
     }else{
         const content = (""+await fs.readFile(gitpath)).trim();
         if(!content.startsWith("gitdir: "))return;
-        await checkGit(path,Path.join(path,content.slice(8)),args);
+        await checkGit(path,Path.join(path,content.slice(8)),args,true);
     }
 };
 
-const handleError = function(err){
+const handleError = function(err,args){
     if(err.code === "EACCES"){
-        console.log(`access denied: ${err.path}`);
+        if(args.eacces)
+            console.log(`access denied: ${err.path}`);
     }else{
+        if(args.eignore)return;
         throw err;
     }
 }
@@ -77,13 +87,13 @@ const checkDir = async function(path,args,depth){
             try{
                 await checkGitFile(dirent,path,args);
             }catch(err){
-                handleError(err);
+                handleError(err,args);
             }
         }else if(depth>0 && dirent.isDirectory()){
             try{
                 await checkDir(Path.join(path,dirent.name),args,depth-1);
             }catch(err){
-                handleError(err);
+                handleError(err,args);
             }
         }
     }
