@@ -16,11 +16,6 @@ const args = parser.parse_args();
 const path = resolve(args.path || ".");
 //console.log(path);
 
-if(!args.name && !args.remote){
-    console.log("please specify either name or remote");
-    process.exit();
-}
-
 const checkGit = async function(basePath,path,args,isSubmodule){
     const {name:_name,remote:_remote} = args;
     const configPath = Path.join(path,"config");
