@@ -62,6 +62,8 @@ pnpm install
 ## Todo
 Option to list repositories with uncommited changes or detached head.  
 Improve install process
+Introduce named argument system (git find --name:a "name1" --name:b "name2" --filter "(a | b)")
+output json asynchronously
 
 
 
