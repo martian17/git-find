@@ -3,12 +3,12 @@ Find git repositories in your local file system by the repository name or remote
 Specifying no remote and no name will list all repositories by default.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/19868746/224391462-ad805d10-cfe7-4fb6-ada4-8799710d9871.png" alt="git-find-wildcard"/>
+  <img src="https://user-images.githubusercontent.com/19868746/224466631-3fd2e476-a5bc-4a87-9946-a2b1578ccba9.png" alt="git-find-wildcard"/>
 </p>
 
 ## Command options
 ```markdown
-usage: index.mjs [-h] [--path PATH] [--name NAME] [--remote REMOTE] [--eacces] [--eignore] [--nosub] [--subonly] [-r] [path]
+usage: git find [-h] [--path PATH] [--name NAME] [--remote REMOTE] [--eacces] [--eignore] [--nosub] [--subonly] [-r] [path]
 
 positional arguments:
   path             path
@@ -25,6 +25,7 @@ optional arguments:
   -r, --recursive  recursive search
 
 ```
+Alternatively, you can access the same command through `git-find` with hyphen.
 
 ## Output Format
 ```
@@ -32,15 +33,15 @@ optional arguments:
 ```
 `repo-name` will be colored yellow if it is a normal repository, and cyan if it's a submodule
 
-## Examples
+## How to use
 ### Example 1: Finding duplicates
-<img src="https://user-images.githubusercontent.com/19868746/224398067-51852b05-ff46-42bf-a2e9-d90e147f8225.png" alt="git-find-duplicate"/>
+<img src="https://user-images.githubusercontent.com/19868746/224466454-698f1d7b-b87a-4785-b772-4a7f9e919c57.png" alt="git-find-duplicate"/>
 
 ### Example 2: Finding recursively
-<img src="https://user-images.githubusercontent.com/19868746/224397456-b56604f5-be94-4a83-93b5-7fe5696e72a5.png" alt="git-find-duplicate"/>
+<img src="https://user-images.githubusercontent.com/19868746/224466461-aeb8b92a-de1f-4390-8f9f-a75409960794.png" alt="git-find-duplicate"/>
 
 ### Example 3: Filter with submodule only
-<img src="https://user-images.githubusercontent.com/19868746/224397493-07a6d3e2-9d80-4581-b53c-b288facb2e7e.png" alt="git-find-duplicate"/>
+<img src="https://user-images.githubusercontent.com/19868746/224466470-85c76aa3-9dff-4cb7-96ab-50b5acecc65e.png" alt="git-find-duplicate"/>
 
 ### Example 4: Wildcard with no submodule filter recursive
 <img src="https://user-images.githubusercontent.com/19868746/224399868-5c2ad0d5-cbd4-4300-9f7e-991a763add8e.png" alt="git-find-duplicate"/>
