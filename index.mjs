@@ -24,6 +24,7 @@ const checkGit = async function(basePath,path,args,isSubmodule){
     const content = "" + await fs.readFile(configPath);
     const lines = content.split(/\n/);
     let remote;
+    let remoteListed = false;
     for(let line of lines){
         if(line[0] === "["){
             if(line.startsWith("[remote")){
@@ -43,15 +44,28 @@ const checkGit = async function(basePath,path,args,isSubmodule){
                 if(_remote)
                     isMatch &&= _remote === url;
                 if(isMatch){
-                    let out = "";
+                    remoteListed = true;
+                    let nameoutput;
                     if(isSubmodule){
-                        out += `\u001b[36;1m${name}\u001b[0m`;
+                        nameoutput = `\u001b[36;1m${name}\u001b[0m`;
                     }else{
-                        out += `\u001b[33;1m${name}\u001b[0m`;
+                        nameoutput = `\u001b[33;1m${name}\u001b[0m`;
                     }
-                    console.log(`${out} \u001b[32m${remote}\u001b[0m \u001b[35;1m${basePath}\u001b[0m : \u001b[33m${url}\u001b[0m`);
+                    console.log(`${nameoutput} \u001b[32m${remote}\u001b[0m \u001b[35;1m${basePath}\u001b[0m : \u001b[33m${url}\u001b[0m`);
                 }
             }
+        }
+    }
+    if(!_remote && !remoteListed){
+        const baseDirName = Path.parse(basePath).name;
+        if(!_name || baseDirName === _name){
+            let nameoutput;
+            if(isSubmodule){
+                nameoutput = `\u001b[36m${baseDirName}\u001b[0m`;
+            }else{
+                nameoutput = `\u001b[33m${baseDirName}\u001b[0m`;
+            }
+            console.log(`${nameoutput} \u001b[35;1m${basePath}\u001b[0m`);
         }
     }
 };
